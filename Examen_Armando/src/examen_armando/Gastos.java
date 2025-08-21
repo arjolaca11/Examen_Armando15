@@ -1,25 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package examen_armando;
 
 /**
- *
+ * Esta clase maneja toda la lógica de los gastos.
+ * Los atributos son privados para protegerlos (encapsulamiento).
  * @author arjol
  */
 public class Gastos {
+    // 1. Atributos se mantienen PRIVADOS
     private Amigos[] amigos;
     private Movimiento[] movimientos;
     private int cantidadMovimientos;
 
+    // Constructor que ya habías corregido
     public Gastos(Amigos[] amigos, int maxMovimientos) {
         this.amigos = amigos;
-        this.movimientos = new Movimiento[maxMovimientos]; // Se crea el arreglo con el tamaño especificado
-        this.cantidadMovimientos = 0; // Se inicializa en 0 porque aún no hay movimientos
+        this.movimientos = new Movimiento[maxMovimientos];
+        this.cantidadMovimientos = 0;
     }
     
-  public void agregarMovimiento(String descripcion, Amigos quienPago, double monto, Amigos[] participantes) {
+    // Método para agregar un nuevo gasto
+    public void agregarMovimiento(String descripcion, Amigos quienPago, double monto, Amigos[] participantes) {
         if (cantidadMovimientos < movimientos.length) {
             movimientos[cantidadMovimientos] = new Movimiento(descripcion, quienPago, monto, participantes);
             cantidadMovimientos++;
@@ -28,6 +28,7 @@ public class Gastos {
         }
     }
 
+    // Tu lógica para analizar deudas (está correcta)
     public String analizarDeudas(Amigos amigo) {
         String resultado = " Deudas hacia " + amigo.getNombre() + ":\n";
         double[] deudas = new double[amigos.length];
@@ -68,7 +69,18 @@ public class Gastos {
         return -1;
     }
 
+    // --- MÉTODOS GETTER PÚBLICOS (LA SOLUCIÓN FINAL) ---
+    // 2. Se crean métodos públicos para acceder a los datos.
+    
     public Amigos[] getAmigos() {
-        return amigos;
-}
+        return this.amigos;
+    }
+    
+    public Movimiento[] getMovimientos() {
+        return this.movimientos;
+    }
+    
+    public int getCantidadMovimientos() {
+        return this.cantidadMovimientos;
+    }
 }
